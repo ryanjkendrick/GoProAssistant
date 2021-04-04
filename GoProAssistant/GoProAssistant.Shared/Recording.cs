@@ -6,20 +6,24 @@ namespace GoProAssistant.Shared
     public class Recording
     {
         public string Name { get; set; }
-        public TimeSpan Length { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
 
-        public List<Location> Locations { get; set; }
+        public List<LocationSample> LocationSamples { get; set; }
+
+        public bool HasFinished => EndTime != default;
+        public TimeSpan Length => EndTime - StartTime;
 
         public Recording()
         {
-            Locations = new List<Location>();
+            LocationSamples = new List<LocationSample>();
         }
 
         public Recording(string name)
         {
             Name = name;
 
-            Locations = new List<Location>();
+            LocationSamples = new List<LocationSample>();
         }
     }
 }

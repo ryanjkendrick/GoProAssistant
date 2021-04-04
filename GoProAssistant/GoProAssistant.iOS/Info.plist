@@ -23,7 +23,7 @@
 	<key>MinimumOSVersion</key>
 	<string>8.0</string>
 	<key>CFBundleDisplayName</key>
-	<string>GoProAssistant</string>
+	<string>GoPro Assistant</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.rkendrick.GoPro-Assistant</string>
 	<key>CFBundleVersion</key>

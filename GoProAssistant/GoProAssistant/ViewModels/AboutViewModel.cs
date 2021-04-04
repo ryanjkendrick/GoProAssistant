@@ -1,10 +1,11 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 using GoProAssistant.CameraInterface;
 using GoProAssistant.Shared;
-
+using Newtonsoft.Json;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -17,7 +18,7 @@ namespace GoProAssistant.ViewModels
         private ILocationStorage locationStorage => DependencyService.Get<ILocationStorage>();
 
         private bool recordGps = false;
-        private DateTime recordStart;
+        private bool locateGoPro = false;
 
         public AboutViewModel()
         {
@@ -30,24 +31,75 @@ namespace GoProAssistant.ViewModels
             ToggleRecordCommand = new Command(async () => {
                 if (recordGps) // Is recording
                 {
-                    if (await StopRecordingAsync())
-                        RecordButtonText = "Stop";
+                    RecordButtonText = "Record";
+
+                    if (!await StopRecordingAsync())
+                        RecordButtonText = "Error";
                 }
                 else // Is not recording
                 {
-                    if (await StartRecordingAsync())
-                        RecordButtonText = "Record";
+                    RecordButtonText = "Stop";
+
+                    if (!await StartRecordingAsync())
+                        RecordButtonText = "Error";
                 }
+            });
+            ToggleLocateCommand = new Command(async () => {
+                if (locateGoPro) // Is locating
+                {
+                    LocateButtonText = "Locate On";
+                    locateGoPro = false;
+
+                    if (!await camera.LocateOffAsync())
+                        LocateButtonText = "Error";
+                }
+                else // Is not locating
+                {
+                    LocateButtonText = "Locate Off";
+                    locateGoPro = true;
+
+                    if (!await camera.LocateOnAsync())
+                        LocateButtonText = "Error";
+                }
+            });
+            PowerOffCommand = new Command(async () => {
+                await camera.PowerOffAsync();
+
+                string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), $"{RecordNameText}.json");
+                string data = File.ReadAllText(fileName);
+
+                var obj = JsonConvert.DeserializeObject<Recording>(data);
+                Console.WriteLine(obj.Name);
             });
         }
 
         public ICommand OpenWebCommand { get; }
         public ICommand ToggleRecordCommand { get; }
+        public ICommand ToggleLocateCommand { get; }
+        public ICommand PowerOffCommand { get; }
+
+        public bool Recording
+        {
+            get => recordGps;
+            set => SetProperty(ref recordGps, value);
+        }
+
+        public string RecordNameText
+        {
+            get => recordNameText;
+            set => SetProperty(ref recordNameText, value);
+        }
 
         public string RecordButtonText
         {
             get => recordButtonText;
             set => SetProperty(ref recordButtonText, value);
+        }
+
+        public string LocateButtonText
+        {
+            get => locateButtonText;
+            set => SetProperty(ref locateButtonText, value);
         }
 
         public string Altitude
@@ -80,8 +132,9 @@ namespace GoProAssistant.ViewModels
             set => SetProperty(ref speed, value);
         }
 
-
+        private string recordNameText;
         private string recordButtonText = "Record";
+        private string locateButtonText = "Locate On";
 
         private string altitude;
         private string longitude;
@@ -91,7 +144,7 @@ namespace GoProAssistant.ViewModels
 
         public void HandleLocationChanged(object sender, LocationUpdatedEventArgs e)
         {
-            Altitude = e.Location.Altitude + " meters";
+            Altitude = string.Format("{0:0.#} meters", e.Location.Altitude);
             Longitude = e.Location.Longitude.ToString();
             Latitude = e.Location.Latitude.ToString();
             Course = e.Location.Course.ToString();
@@ -103,13 +156,12 @@ namespace GoProAssistant.ViewModels
 
         private async Task<bool> StartRecordingAsync()
         {
-            locationStorage.StartRecording("Test Recording");
+            locationStorage.StartRecording(RecordNameText);
 
             if (!await camera.StartRecordingAsync())
                 return false;
 
-            recordGps = true;
-            recordStart = DateTime.Now;
+            Recording = true;
 
             return true;
         }
@@ -119,11 +171,14 @@ namespace GoProAssistant.ViewModels
             if (!await camera.StopRecordingAsync())
                 return false;
 
-            recordGps = false;
-            var recordLength = DateTime.Now - recordStart;
+            Recording = false;
+            var recording = locationStorage.FinishRecording();
 
-            var recording = locationStorage.FinishRecording(recordLength);
-            Console.WriteLine($"{recording.Name} {recording.Length} {recording.Locations.Count}");
+            Console.WriteLine($"{recording.Name} {recording.Length} {recording.LocationSamples.Count}");
+
+            string json = JsonConvert.SerializeObject(recording);
+            string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), $"{recording.Name}.json");
+            File.WriteAllText(fileName, json);
 
             return true;
         }

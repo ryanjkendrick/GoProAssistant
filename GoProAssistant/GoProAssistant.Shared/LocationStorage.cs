@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace GoProAssistant.Shared
 {
     public class LocationStorage : ILocationStorage
@@ -9,9 +10,9 @@ namespace GoProAssistant.Shared
         {
         }
 
-        public Recording FinishRecording(TimeSpan length)
+        public Recording FinishRecording()
         {
-            currentRecording.Length = length;
+            currentRecording.EndTime = DateTime.Now;
 
             return currentRecording;
         }
@@ -24,14 +25,15 @@ namespace GoProAssistant.Shared
         public bool StartRecording(string name)
         {
             currentRecording = new Recording(name);
+            currentRecording.StartTime = DateTime.Now;
 
             return true;
         }
 
         public void StoreLocation(Location newLocation)
         {
-            if (newLocation != null)
-                currentRecording.Locations.Add(newLocation);
+            if (newLocation != null && !currentRecording.HasFinished)
+                currentRecording.LocationSamples.Add(new LocationSample(newLocation));
         }
     }
 }

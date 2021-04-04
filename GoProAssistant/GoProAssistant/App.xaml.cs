@@ -1,10 +1,7 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
+
 using GoProAssistant.Services;
-using GoProAssistant.Views;
 using GoProAssistant.iOS;
-using System.Collections.Generic;
 using GoProAssistant.CameraInterface;
 using GoProAssistant.Shared;
 
