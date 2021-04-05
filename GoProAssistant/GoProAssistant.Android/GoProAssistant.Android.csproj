@@ -59,6 +59,9 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.CommunityToolkit">
+      <Version>1.1.0</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -97,6 +100,10 @@
     <ProjectReference Include="..\GoProAssistant.Shared\GoProAssistant.Shared.csproj">
       <Project>{D6205931-91C1-4C3B-97AA-C55E29DC9E30}</Project>
       <Name>GoProAssistant.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GoProAssistant.VideoEdit\GoProAssistant.VideoEdit.csproj">
+      <Project>{81F1BC3A-C967-4195-B8D3-06DDA3751E3C}</Project>
+      <Name>GoProAssistant.VideoEdit</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="..\GoProAssistant\GoProAssistant.projitems" Label="Shared" />

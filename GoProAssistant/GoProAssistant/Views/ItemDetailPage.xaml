@@ -1,14 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
              x:Class="GoProAssistant.Views.ItemDetailPage"
              Title="{Binding Title}">
-
-    <StackLayout Spacing="20" Padding="15">
-        <Label Text="Text:" FontSize="Medium" />
-        <Label Text="{Binding Text}" FontSize="Small"/>
-        <Label Text="Description:" FontSize="Medium" />
-        <Label Text="{Binding Description}" FontSize="Small"/>
-    </StackLayout>
+    
+    <ScrollView>
+        <StackLayout Spacing="20" Padding="15">
+            <Label Text="Name:" FontSize="Medium" />
+            <Label Text="{Binding Name}" FontSize="Small"/>
+            <Label Text="Start Time:" FontSize="Medium" />
+            <Label Text="{Binding StartTime}" FontSize="Small"/>
+            <Label Text="Length:" FontSize="Medium" />
+            <Label Text="{Binding Length}" FontSize="Small"/>
+            <Label Text="Original Video:" FontSize="Medium" IsVisible="{Binding ShowOriginalVid}" />
+            <xct:MediaElement Source="{Binding OriginalVideoSource}"
+                            ShowsPlaybackControls="True"
+                            AutoPlay="False"
+                            IsVisible="{Binding ShowOriginalVid}" />
+            <Label Text="Edited Video:" FontSize="Medium" IsVisible="{Binding ShowEditedVid}" />
+            <xct:MediaElement Source="{Binding OriginalVideoUri}"
+                            ShowsPlaybackControls="True"
+                            AutoPlay="False"
+                            IsVisible="{Binding ShowEditedVid}" />
+            <Button Margin="0,10,0,0" Text="Add Video"
+                            Command="{Binding AddVidCommand}"
+                            BackgroundColor="{StaticResource Primary}"
+                            TextColor="White"
+                            IsEnabled="{Binding CanPerformOperation}" />
+            <Button Margin="0,10,0,0" Text="Process Video"
+                            Command="{Binding ProcessVidCommand}"
+                            BackgroundColor="{StaticResource Primary}"
+                            TextColor="White"
+                            IsVisible="{Binding ShowOriginalVid}"
+                            IsEnabled="{Binding CanPerformOperation}" />
+            <Button Margin="0,10,0,0" Text="Delete"
+                            Command="{Binding DeleteCommand}"
+                            BackgroundColor="Red"
+                            TextColor="White"
+                            IsEnabled="{Binding CanPerformOperation}"/>
+        </StackLayout>
+    </ScrollView>
     
 </ContentPage>

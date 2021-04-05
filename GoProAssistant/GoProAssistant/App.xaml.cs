@@ -16,7 +16,7 @@ namespace GoProAssistant
             DependencyService.Register<MockDataStore>();
             DependencyService.Register<Camera>();
             DependencyService.Register<ILocationProvider, LocationManager>();
-            DependencyService.Register<ILocationStorage, LocationStorage>();
+            DependencyService.Register<IRecordingStorage, RecordingStorage>();
 
             MainPage = new AppShell();
         }

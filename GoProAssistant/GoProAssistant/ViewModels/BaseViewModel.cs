@@ -5,14 +5,13 @@ using System.Runtime.CompilerServices;
 
 using Xamarin.Forms;
 
-using GoProAssistant.Models;
-using GoProAssistant.Services;
+using GoProAssistant.Shared;
 
 namespace GoProAssistant.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public IRecordingStorage DataStore => DependencyService.Get<IRecordingStorage>();
 
         bool isBusy = false;
         public bool IsBusy
