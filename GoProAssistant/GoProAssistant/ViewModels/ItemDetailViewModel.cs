@@ -111,7 +111,7 @@ namespace GoProAssistant.ViewModels
                 string inputFile = DataStore.GetVideoPath(Name);
                 string outputfile = DataStore.GetEditedVideoPath(Name);
 
-                await vidEdit.AddTextToVideoAsync(inputFile, outputfile, textOverlays);
+                //await vidEdit.AddTextToVideoAsync(inputFile, outputfile, textOverlays);
 
                 EditedVideoSource = new FileMediaSource
                 {

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhone</Platform>
+    <ProjectGuid>{ADA17966-933F-4DCF-8B1B-46BECBBB1FF6}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>GoProAssistant.Exporter</RootNamespace>
+    <AssemblyName>GoProAssistant.Exporter</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ExternalConsole>true</ExternalConsole>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ExternalConsole>true</ExternalConsole>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="VisioForge.Controls">
+      <HintPath>..\packages\VisioForge.DotNet.Core.TRIAL.14.0.29\lib\net472\VisioForge.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="VisioForge.Controls.UI.Dialogs">
+      <HintPath>..\packages\VisioForge.DotNet.Core.TRIAL.14.0.29\lib\net472\VisioForge.Controls.UI.Dialogs.dll</HintPath>
+    </Reference>
+    <Reference Include="VisioForge.Controls.UI">
+      <HintPath>..\packages\VisioForge.DotNet.Core.TRIAL.14.0.29\lib\net472\VisioForge.Controls.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="VisioForge.MediaFramework">
+      <HintPath>..\packages\VisioForge.DotNet.Core.TRIAL.14.0.29\lib\net472\VisioForge.MediaFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="VisioForge.Shared">
+      <HintPath>..\packages\VisioForge.DotNet.Core.TRIAL.14.0.29\lib\net472\VisioForge.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="VisioForge.Tools">
+      <HintPath>..\packages\VisioForge.DotNet.Core.TRIAL.14.0.29\lib\net472\VisioForge.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="VisioForge.Types">
+      <HintPath>..\packages\VisioForge.DotNet.Core.TRIAL.14.0.29\lib\net472\VisioForge.Types.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextOverlay.cs" />
+    <Compile Include="Location.cs" />
+    <Compile Include="LocationSample.cs" />
+    <Compile Include="Recording.cs" />
+    <Compile Include="Extensions\RecordingExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\VisioForge.DotNet.Core.Redist.Base.x64.14.0.29\build\VisioForge.DotNet.Core.Redist.Base.x64.targets" Condition="Exists('..\packages\VisioForge.DotNet.Core.Redist.Base.x64.14.0.29\build\VisioForge.DotNet.Core.Redist.Base.x64.targets')" />
+</Project>
