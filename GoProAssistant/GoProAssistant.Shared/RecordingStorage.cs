@@ -102,9 +102,13 @@ namespace GoProAssistant.Shared
         public void DeleteRecording(string name)
         {
             string filename = GenerateRecordingFilename(name, "json");
+            DeleteFile(filename);
 
-            if (File.Exists(filename))
-                File.Delete(filename);
+            filename = GetVideoPath(name);
+            DeleteFile(filename);
+
+            filename = GetEditedVideoPath(name);
+            DeleteFile(filename);
         }
 
         public async Task<bool> StoreVideoAsync(string name, Stream video)
@@ -145,6 +149,12 @@ namespace GoProAssistant.Shared
             recordingToChange.EditedVideoSaved = true;
 
             SaveRecording(recordingToChange);
+        }
+
+        private void DeleteFile(string filename)
+        {
+            if (File.Exists(filename))
+                File.Delete(filename);
         }
     }
 }

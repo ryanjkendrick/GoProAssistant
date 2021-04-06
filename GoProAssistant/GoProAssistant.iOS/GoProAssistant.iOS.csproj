@@ -76,6 +76,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LocationManager.cs" />
     <Compile Include="Extensions\CLLocationExtensions.cs" />
+    <Compile Include="VideoEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -160,10 +161,6 @@
     <ProjectReference Include="..\GoProAssistant.CameraInterface\GoProAssistant.CameraInterface.csproj">
       <Project>{FD14F560-2E17-48E2-BCCA-DC2839B9CF64}</Project>
       <Name>GoProAssistant.CameraInterface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GoProAssistant.VideoEdit\GoProAssistant.VideoEdit.csproj">
-      <Project>{81F1BC3A-C967-4195-B8D3-06DDA3751E3C}</Project>
-      <Name>GoProAssistant.VideoEdit</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

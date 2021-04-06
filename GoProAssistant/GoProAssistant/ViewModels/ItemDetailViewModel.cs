@@ -5,15 +5,18 @@ using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.CommunityToolkit.Core;
-using GoProAssistant.Extensions;
-using GoProAssistant.VideoEdit;
+
+using GoProAssistant.Shared;
+using GoProAssistant.Shared.Extensions;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace GoProAssistant.ViewModels
 {
     [QueryProperty(nameof(RecordingName), nameof(RecordingName))]
     public class ItemDetailViewModel : BaseViewModel
     {
-        private VidEdit vidEdit => DependencyService.Get<VidEdit>();
+        private IVideoEditor vidEdit => DependencyService.Get<IVideoEditor>();
 
         private bool canPerformOperation = true;
         private bool showOriginalVid, showEditedVid;
@@ -108,18 +111,30 @@ namespace GoProAssistant.ViewModels
 
                 var rec = DataStore.GetRecording(Name);
                 var textOverlays = rec.ConvertToTextOverlayArray();
+                string json = JsonConvert.SerializeObject(textOverlays);
+
+                var fn = "TextOverlays.json";
+                var file = Path.Combine(FileSystem.CacheDirectory, fn);
+                File.WriteAllText(file, json);
+
+                await Share.RequestAsync(new ShareFileRequest
+                {
+                    Title = Title,
+                    File = new ShareFile(file)
+                });
+
                 string inputFile = DataStore.GetVideoPath(Name);
                 string outputfile = DataStore.GetEditedVideoPath(Name);
 
-                //await vidEdit.AddTextToVideoAsync(inputFile, outputfile, textOverlays);
+                //vidEdit.AddTextToVideo(inputFile, outputfile, textOverlays);
 
-                EditedVideoSource = new FileMediaSource
-                {
-                    File = outputfile
-                };
-                ShowEditedVid = true;
+                //EditedVideoSource = new FileMediaSource
+                //{
+                //    File = outputfile
+                //};
+                //ShowEditedVid = true;
 
-                DataStore.StoreEditedVideo(Name);
+                //DataStore.StoreEditedVideo(Name);
 
                 CanPerformOperation = true;
             });
@@ -153,6 +168,17 @@ namespace GoProAssistant.ViewModels
                         File = vidPath
                     };
                     ShowOriginalVid = true;
+                }
+
+                if (rec.EditedVideoSaved)
+                {
+                    string vidPath = DataStore.GetEditedVideoPath(name);
+
+                    EditedVideoSource = new FileMediaSource
+                    {
+                        File = vidPath
+                    };
+                    ShowEditedVid = true;
                 }
             }
             catch (Exception)

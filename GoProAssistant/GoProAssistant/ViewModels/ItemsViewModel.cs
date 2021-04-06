@@ -76,7 +76,7 @@ namespace GoProAssistant.ViewModels
 
         private async void OnAddItem(object obj)
         {
-            await Shell.Current.GoToAsync(nameof(NewItemPage));
+            await Shell.Current.DisplayAlert("Error", "Not yet implemented", "OK");
         }
 
         async void OnItemSelected(RecordingMeta item)

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using GoProAssistant.ViewModels;
-using GoProAssistant.Views;
+﻿using GoProAssistant.Views;
+
 using Xamarin.Forms;
 
 namespace GoProAssistant
@@ -12,7 +10,6 @@ namespace GoProAssistant
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-            Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
         }
 
     }

@@ -101,10 +101,6 @@
       <Project>{D6205931-91C1-4C3B-97AA-C55E29DC9E30}</Project>
       <Name>GoProAssistant.Shared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GoProAssistant.VideoEdit\GoProAssistant.VideoEdit.csproj">
-      <Project>{81F1BC3A-C967-4195-B8D3-06DDA3751E3C}</Project>
-      <Name>GoProAssistant.VideoEdit</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="..\GoProAssistant\GoProAssistant.projitems" Label="Shared" />
  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

@@ -13,10 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoProAssistant.Shared", "Go
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoProAssistant.CameraInterface", "GoProAssistant.CameraInterface\GoProAssistant.CameraInterface.csproj", "{FD14F560-2E17-48E2-BCCA-DC2839B9CF64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoProAssistant.VideoEdit", "GoProAssistant.VideoEdit\GoProAssistant.VideoEdit.csproj", "{81F1BC3A-C967-4195-B8D3-06DDA3751E3C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoProAssistant.Exporter", "GoProAssistant.Exporter\GoProAssistant.Exporter.csproj", "{ADA17966-933F-4DCF-8B1B-46BECBBB1FF6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,30 +71,6 @@ Global
 		{FD14F560-2E17-48E2-BCCA-DC2839B9CF64}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{FD14F560-2E17-48E2-BCCA-DC2839B9CF64}.Release|iPhone.ActiveCfg = Release|Any CPU
 		{FD14F560-2E17-48E2-BCCA-DC2839B9CF64}.Release|iPhone.Build.0 = Release|Any CPU
-		{81F1BC3A-C967-4195-B8D3-06DDA3751E3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{81F1BC3A-C967-4195-B8D3-06DDA3751E3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{81F1BC3A-C967-4195-B8D3-06DDA3751E3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{81F1BC3A-C967-4195-B8D3-06DDA3751E3C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{81F1BC3A-C967-4195-B8D3-06DDA3751E3C}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{81F1BC3A-C967-4195-B8D3-06DDA3751E3C}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{81F1BC3A-C967-4195-B8D3-06DDA3751E3C}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{81F1BC3A-C967-4195-B8D3-06DDA3751E3C}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{81F1BC3A-C967-4195-B8D3-06DDA3751E3C}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{81F1BC3A-C967-4195-B8D3-06DDA3751E3C}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{81F1BC3A-C967-4195-B8D3-06DDA3751E3C}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{81F1BC3A-C967-4195-B8D3-06DDA3751E3C}.Release|iPhone.Build.0 = Release|Any CPU
-		{ADA17966-933F-4DCF-8B1B-46BECBBB1FF6}.Debug|Any CPU.ActiveCfg = Debug|iPhone
-		{ADA17966-933F-4DCF-8B1B-46BECBBB1FF6}.Debug|Any CPU.Build.0 = Debug|iPhone
-		{ADA17966-933F-4DCF-8B1B-46BECBBB1FF6}.Release|Any CPU.ActiveCfg = Release|iPhone
-		{ADA17966-933F-4DCF-8B1B-46BECBBB1FF6}.Release|Any CPU.Build.0 = Release|iPhone
-		{ADA17966-933F-4DCF-8B1B-46BECBBB1FF6}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhone
-		{ADA17966-933F-4DCF-8B1B-46BECBBB1FF6}.Debug|iPhoneSimulator.Build.0 = Debug|iPhone
-		{ADA17966-933F-4DCF-8B1B-46BECBBB1FF6}.Release|iPhoneSimulator.ActiveCfg = Release|iPhone
-		{ADA17966-933F-4DCF-8B1B-46BECBBB1FF6}.Release|iPhoneSimulator.Build.0 = Release|iPhone
-		{ADA17966-933F-4DCF-8B1B-46BECBBB1FF6}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{ADA17966-933F-4DCF-8B1B-46BECBBB1FF6}.Debug|iPhone.Build.0 = Debug|iPhone
-		{ADA17966-933F-4DCF-8B1B-46BECBBB1FF6}.Release|iPhone.ActiveCfg = Release|iPhone
-		{ADA17966-933F-4DCF-8B1B-46BECBBB1FF6}.Release|iPhone.Build.0 = Release|iPhone
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

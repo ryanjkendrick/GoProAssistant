@@ -1,6 +1,5 @@
 ﻿using Xamarin.Forms;
 
-using GoProAssistant.Services;
 using GoProAssistant.iOS;
 using GoProAssistant.CameraInterface;
 using GoProAssistant.Shared;
@@ -13,10 +12,10 @@ namespace GoProAssistant
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
             DependencyService.Register<Camera>();
             DependencyService.Register<ILocationProvider, LocationManager>();
             DependencyService.Register<IRecordingStorage, RecordingStorage>();
+            DependencyService.Register<IVideoEditor, VideoEditor>();
 
             MainPage = new AppShell();
         }
