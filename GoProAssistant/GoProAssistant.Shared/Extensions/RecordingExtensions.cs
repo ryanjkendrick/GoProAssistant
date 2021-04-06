@@ -16,12 +16,12 @@ namespace GoProAssistant.Shared.Extensions
                 var sample = recording.LocationSamples[i];
 
                 var speedOverlay = new TextOverlay();
-                speedOverlay.Text = string.Format("{0:0.#} mph", sample.Location.Speed * 2.2369); // m/s -> mph
+                speedOverlay.Text = string.Format("{0:0.#}mph", sample.Location.Speed * 2.2369); // m/s -> mph
                 speedOverlay.Position = "right";
                 speedOverlay.StartTime = duration;
 
                 var altitudeOverlay = new TextOverlay();
-                altitudeOverlay.Text = string.Format("{0:0.#} m", sample.Location.Altitude);
+                altitudeOverlay.Text = string.Format("{0:0.#}m", sample.Location.Altitude);
                 altitudeOverlay.Position = "left";
                 altitudeOverlay.StartTime = duration;
 
