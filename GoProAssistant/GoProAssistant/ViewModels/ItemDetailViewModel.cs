@@ -123,18 +123,21 @@ namespace GoProAssistant.ViewModels
                     File = new ShareFile(file)
                 });
 
-                string inputFile = DataStore.GetVideoPath(Name);
-                string outputfile = DataStore.GetEditedVideoPath(Name);
+                if (rec.VideoSaved)
+                {
+                    string inputFile = DataStore.GetVideoPath(Name);
+                    string outputfile = DataStore.GetEditedVideoPath(Name);
 
-                //vidEdit.AddTextToVideo(inputFile, outputfile, textOverlays);
+                    vidEdit.AddTextToVideo(inputFile, outputfile, textOverlays);
 
-                //EditedVideoSource = new FileMediaSource
-                //{
-                //    File = outputfile
-                //};
-                //ShowEditedVid = true;
+                    EditedVideoSource = new FileMediaSource
+                    {
+                        File = outputfile
+                    };
+                    ShowEditedVid = true;
 
-                //DataStore.StoreEditedVideo(Name);
+                    DataStore.StoreEditedVideo(Name);
+                }
 
                 CanPerformOperation = true;
             });

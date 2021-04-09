@@ -1,5 +1,4 @@
-﻿using System;
-namespace GoProAssistant.Shared
+﻿namespace GoProAssistant.Shared
 {
     public class Location
     {
@@ -8,6 +7,8 @@ namespace GoProAssistant.Shared
         public double Latitude { get; set; }
         public double Course { get; set; }
         public double Speed { get; set; }
+
+        public double SpeedAccuracy { get; set; }
 
         public Location()
         {

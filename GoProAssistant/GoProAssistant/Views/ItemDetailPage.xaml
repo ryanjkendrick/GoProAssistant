@@ -32,7 +32,6 @@
                             Command="{Binding ProcessVidCommand}"
                             BackgroundColor="{StaticResource Primary}"
                             TextColor="White"
-                            IsVisible="{Binding ShowOriginalVid}"
                             IsEnabled="{Binding CanPerformOperation}" />
             <Button Margin="0,10,0,0" Text="Delete"
                             Command="{Binding DeleteCommand}"

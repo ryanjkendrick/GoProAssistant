@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Newtonsoft.Json;
@@ -85,7 +86,7 @@ namespace GoProAssistant.Shared
                     recordings.Add(rec);
             }
 
-            return recordings.ToArray();
+            return recordings.OrderBy(x => x.StartTime).ToArray();
         }
 
         private Recording GetRecordingFromFile(string filename)

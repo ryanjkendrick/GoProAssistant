@@ -13,7 +13,8 @@ namespace GoProAssistant.iOS.Extensions
                 Longitude = loc.Coordinate.Longitude,
                 Latitude = loc.Coordinate.Latitude,
                 Course = loc.Course,
-                Speed = loc.Speed
+                Speed = loc.Speed,
+                SpeedAccuracy = loc.SpeedAccuracy
             };
         }
     }
