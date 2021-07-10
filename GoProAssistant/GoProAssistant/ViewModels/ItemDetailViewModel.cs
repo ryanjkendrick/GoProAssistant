@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Windows.Input;
 
 using Xamarin.Essentials;
@@ -8,8 +9,8 @@ using Xamarin.CommunityToolkit.Core;
 
 using GoProAssistant.Shared;
 using GoProAssistant.Shared.Extensions;
+
 using Newtonsoft.Json;
-using System.IO;
 
 namespace GoProAssistant.ViewModels
 {
@@ -98,9 +99,12 @@ namespace GoProAssistant.ViewModels
 
                 var file = await MediaPicker.PickVideoAsync();
 
-                using (var vidStream = await file.OpenReadAsync())
+                if (file != null)
                 {
-                    await DataStore.StoreVideoAsync(Name, vidStream);
+                    using (var vidStream = await file.OpenReadAsync())
+                    {
+                        await DataStore.StoreVideoAsync(Name, vidStream);
+                    }
                 }
 
                 CanPerformOperation = true;
@@ -113,8 +117,8 @@ namespace GoProAssistant.ViewModels
                 var textOverlays = rec.ConvertToTextOverlayArray();
                 string json = JsonConvert.SerializeObject(textOverlays);
 
-                var fn = "TextOverlays.json";
-                var file = Path.Combine(FileSystem.CacheDirectory, fn);
+                string fn = "TextOverlays.json";
+                string file = Path.Combine(FileSystem.CacheDirectory, fn);
                 File.WriteAllText(file, json);
 
                 await Share.RequestAsync(new ShareFileRequest
