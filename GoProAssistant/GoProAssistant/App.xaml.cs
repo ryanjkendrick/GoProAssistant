@@ -17,9 +17,10 @@ namespace GoProAssistant
             DependencyService.Register<Camera>();
             DependencyService.Register<ILocationProvider, LocationManager>();
             DependencyService.Register<IRecordingStorage, RecordingStorage>();
-            DependencyService.Register<IVideoEditor, VideoEditor>();
 
             MainPage = new AppShell();
+
+            DependencyService.Register<IVideoEditor, VideoEditor>();
         }
 
         protected override void OnStart()
