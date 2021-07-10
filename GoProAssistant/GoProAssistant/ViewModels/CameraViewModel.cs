@@ -26,6 +26,12 @@ namespace GoProAssistant.ViewModels
             locationProvider.LocationUpdated += HandleLocationChanged;
 
             ToggleRecordCommand = new Command(async () => {
+                if (string.IsNullOrWhiteSpace(RecordNameText))
+                {
+                    await Shell.Current.DisplayAlert("Alert", "Recording Name is required", "OK");
+                    return;
+                }
+
                 if (IsRecording) // Is recording
                 {
                     CanPerformOperation = false;
@@ -193,7 +199,7 @@ namespace GoProAssistant.ViewModels
 
         private async Task<bool> StartRecordingAsync()
         {
-            if (string.IsNullOrWhiteSpace(RecordNameText) || !recordingStorage.StartRecording(RecordNameText.Trim()))
+            if (!recordingStorage.StartRecording(RecordNameText.Trim()))
                 return false;
 
             if (!await camera.StartRecordingAsync())
