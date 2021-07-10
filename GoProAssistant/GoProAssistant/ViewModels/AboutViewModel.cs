@@ -17,7 +17,6 @@ namespace GoProAssistant.ViewModels
         private IRecordingStorage recordingStorage => DependencyService.Get<IRecordingStorage>();
 
         private bool canPerformOperation = true;
-        private bool isRecording = false;
         private bool locateGoPro = false;
 
         public AboutViewModel()
@@ -30,7 +29,7 @@ namespace GoProAssistant.ViewModels
             OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
 
             ToggleRecordCommand = new Command(async () => {
-                if (isRecording) // Is recording
+                if (IsRecording) // Is recording
                 {
                     CanPerformOperation = false;
                     RecordButtonText = "Wait";
@@ -53,7 +52,7 @@ namespace GoProAssistant.ViewModels
 
                     if (!await StartRecordingAsync())
                     {
-                        isRecording = false;
+                        IsRecording = false;
 
                         await Shell.Current.DisplayAlert("Alert", "Recording failed", "OK");
                         RecordButtonText = "Record";
@@ -122,8 +121,8 @@ namespace GoProAssistant.ViewModels
 
         public bool IsRecording
         {
-            get => isRecording;
-            set => SetProperty(ref isRecording, value);
+            get => GoProAssistant.IsInRecordingMode;
+            set => GoProAssistant.IsInRecordingMode = value;
         }
 
         public string RecordNameText
@@ -186,7 +185,7 @@ namespace GoProAssistant.ViewModels
 
         public void HandleLocationChanged(object sender, LocationUpdatedEventArgs e)
         {
-            if (isRecording)
+            if (IsRecording)
                 recordingStorage.StoreLocation(e.Location);
 
             Altitude = string.Format("{0:0.#} meters", e.Location.Altitude);
