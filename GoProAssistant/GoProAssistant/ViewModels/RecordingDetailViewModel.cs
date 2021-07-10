@@ -15,7 +15,7 @@ using Newtonsoft.Json;
 namespace GoProAssistant.ViewModels
 {
     [QueryProperty(nameof(RecordingName), nameof(RecordingName))]
-    public class ItemDetailViewModel : BaseViewModel
+    public class RecordingDetailViewModel : BaseViewModel
     {
         private IVideoEditor vidEdit => DependencyService.Get<IVideoEditor>();
 
@@ -92,7 +92,7 @@ namespace GoProAssistant.ViewModels
         public ICommand ProcessVidCommand { get; }
         public ICommand DeleteCommand { get; }
 
-        public ItemDetailViewModel()
+        public RecordingDetailViewModel()
         {
             AddVidCommand = new Command(async () => {
                 CanPerformOperation = false;

@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
 using GoProAssistant.Models;
 using GoProAssistant.Views;
-using GoProAssistant.Shared;
 
 namespace GoProAssistant.ViewModels
 {
-    public class ItemsViewModel : BaseViewModel
+    public class RecordingsViewModel : BaseViewModel
     {
         private RecordingMeta _selectedItem;
 
@@ -19,7 +17,7 @@ namespace GoProAssistant.ViewModels
         public Command LoadItemsCommand { get; }
         public Command<RecordingMeta> ItemTapped { get; }
 
-        public ItemsViewModel()
+        public RecordingsViewModel()
         {
             Title = "Browse";
             Items = new ObservableCollection<RecordingMeta>();
@@ -82,7 +80,7 @@ namespace GoProAssistant.ViewModels
                 return;
 
             // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.RecordingName)}={item.Name}");
+            await Shell.Current.GoToAsync($"{nameof(RecordingDetailPage)}?{nameof(RecordingDetailViewModel.RecordingName)}={item.Name}");
         }
     }
 }

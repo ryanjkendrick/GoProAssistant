@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace GoProAssistant.ViewModels
 {
-    public class AboutViewModel : BaseViewModel
+    public class CameraViewModel : BaseViewModel
     {
         private Camera camera => DependencyService.Get<Camera>();
         private ILocationProvider locationProvider => DependencyService.Get<ILocationProvider>();
@@ -18,7 +18,7 @@ namespace GoProAssistant.ViewModels
         private bool canPerformOperation = true;
         private bool locateGoPro = false;
 
-        public AboutViewModel()
+        public CameraViewModel()
         {
             Title = "Camera";
 

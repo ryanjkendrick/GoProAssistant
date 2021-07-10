@@ -4,12 +4,12 @@ using GoProAssistant.ViewModels;
 
 namespace GoProAssistant.Views
 {
-    public partial class ItemDetailPage : ContentPage
+    public partial class RecordingDetailPage : ContentPage
     {
-        public ItemDetailPage()
+        public RecordingDetailPage()
         {
             InitializeComponent();
-            BindingContext = new ItemDetailViewModel();
+            BindingContext = new RecordingDetailViewModel();
         }
     }
 }

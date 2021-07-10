@@ -8,9 +8,9 @@ using Xamarin.Forms.Xaml;
 
 namespace GoProAssistant.Views
 {
-    public partial class AboutPage : ContentPage
+    public partial class CameraPage : ContentPage
     {
-        public AboutPage()
+        public CameraPage()
         {
             InitializeComponent();
         }

@@ -9,7 +9,7 @@ namespace GoProAssistant
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
+            Routing.RegisterRoute(nameof(RecordingDetailPage), typeof(RecordingDetailPage));
         }
 
     }
