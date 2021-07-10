@@ -5,7 +5,6 @@ using System.Windows.Input;
 using GoProAssistant.CameraInterface;
 using GoProAssistant.Shared;
 
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace GoProAssistant.ViewModels
@@ -25,8 +24,6 @@ namespace GoProAssistant.ViewModels
 
             locationProvider.StartLocationUpdates();
             locationProvider.LocationUpdated += HandleLocationChanged;
-
-            OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
 
             ToggleRecordCommand = new Command(async () => {
                 if (IsRecording) // Is recording
@@ -108,7 +105,6 @@ namespace GoProAssistant.ViewModels
             });
         }
 
-        public ICommand OpenWebCommand { get; }
         public ICommand ToggleRecordCommand { get; }
         public ICommand ToggleLocateCommand { get; }
         public ICommand PowerOffCommand { get; }

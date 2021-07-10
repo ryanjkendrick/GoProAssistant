@@ -17,7 +17,6 @@ namespace GoProAssistant.ViewModels
 
         public ObservableCollection<RecordingMeta> Items { get; }
         public Command LoadItemsCommand { get; }
-        public Command AddItemCommand { get; }
         public Command<RecordingMeta> ItemTapped { get; }
 
         public ItemsViewModel()
@@ -27,8 +26,6 @@ namespace GoProAssistant.ViewModels
             LoadItemsCommand = new Command(() => ExecuteLoadItemsCommand());
 
             ItemTapped = new Command<RecordingMeta>(OnItemSelected);
-
-            AddItemCommand = new Command(OnAddItem);
         }
 
         void ExecuteLoadItemsCommand()
