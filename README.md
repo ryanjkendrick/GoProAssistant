@@ -3,6 +3,8 @@ Mobile app that tells a GoPro and then starts recording GPS data from the handse
 
 A Python script is also supplied that will take the JSON supplied by the mobile app and the video from the GoPro and overlay the speed and altitude onto the video.
 
+*Note:* Your phone must be connected to the GoPro via WiFi to work.
+
 # Getting Started
 
 1.  Add Recording Name and hit 'Record'.
