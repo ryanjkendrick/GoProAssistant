@@ -1,9 +1,14 @@
 import json
 from moviepy.editor import *
+import sys
 
 text_overlay_json_path = "./TextOverlays.json"
 original_vid_path = "./NewVid.mp4"
 text_overlays = []
+
+if str(sys.argv) >= 3:
+    text_overlay_json_path = sys.argv[1]
+    original_vid_path = sys.argv[2]
 
 print("Preparing...")
 
