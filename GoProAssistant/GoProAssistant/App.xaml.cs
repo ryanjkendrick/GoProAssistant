@@ -1,13 +1,11 @@
 ﻿using Xamarin.Forms;
 
 using GoProAssistant.iOS.Geospatial;
-using GoProAssistant.iOS.VideoEditing;
 
 using GoProAssistant.CameraInterface;
 
 using GoProAssistant.Shared.Geospatial;
 using GoProAssistant.Shared.VideoRecording;
-using GoProAssistant.Shared.VideoEditing;
 
 namespace GoProAssistant
 {
@@ -24,8 +22,6 @@ namespace GoProAssistant
             DependencyService.Register<IRecordingStorage, RecordingStorage>();
 
             MainPage = new AppShell();
-
-            DependencyService.Register<IVideoEditor, VideoEditor>();
         }
 
         protected override void OnStart()

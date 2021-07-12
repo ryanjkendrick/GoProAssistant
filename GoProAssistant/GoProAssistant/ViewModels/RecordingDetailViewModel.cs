@@ -8,7 +8,6 @@ using Xamarin.Forms;
 using Xamarin.CommunityToolkit.Core;
 
 using GoProAssistant.Shared.Extensions;
-using GoProAssistant.Shared.VideoEditing;
 
 using Newtonsoft.Json;
 
@@ -17,8 +16,6 @@ namespace GoProAssistant.ViewModels
     [QueryProperty(nameof(RecordingName), nameof(RecordingName))]
     public class RecordingDetailViewModel : BaseViewModel
     {
-        private IVideoEditor vidEdit => DependencyService.Get<IVideoEditor>();
-
         private bool canPerformOperation = true;
         private bool showOriginalVid, showEditedVid;
         private string name;
@@ -126,22 +123,6 @@ namespace GoProAssistant.ViewModels
                     Title = Title,
                     File = new ShareFile(file)
                 });
-
-                if (rec.VideoSaved)
-                {
-                    string inputFile = DataStore.GetVideoPath(Name);
-                    string outputFile = DataStore.GetEditedVideoPath(Name);
-
-                    vidEdit.AddTextToVideo(inputFile, outputFile, textOverlays);
-
-                    EditedVideoSource = new FileMediaSource
-                    {
-                        File = outputFile
-                    };
-                    ShowEditedVid = true;
-
-                    DataStore.StoreEditedVideo(Name);
-                }
 
                 CanPerformOperation = true;
             });
