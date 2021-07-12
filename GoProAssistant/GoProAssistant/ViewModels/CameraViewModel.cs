@@ -3,7 +3,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 
 using GoProAssistant.CameraInterface;
-using GoProAssistant.Shared;
+using GoProAssistant.Shared.Geospatial;
+using GoProAssistant.Shared.VideoRecording;
 
 using Xamarin.Forms;
 

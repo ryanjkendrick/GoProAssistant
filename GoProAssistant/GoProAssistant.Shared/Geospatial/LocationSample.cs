@@ -1,5 +1,6 @@
 ﻿using System;
-namespace GoProAssistant.Shared
+
+namespace GoProAssistant.Shared.Geospatial
 {
     public class LocationSample
     {

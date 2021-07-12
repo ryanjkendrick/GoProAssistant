@@ -1,5 +1,6 @@
 ﻿using CoreLocation;
-using GoProAssistant.Shared;
+
+using GoProAssistant.Shared.Geospatial;
 
 namespace GoProAssistant.iOS.Extensions
 {

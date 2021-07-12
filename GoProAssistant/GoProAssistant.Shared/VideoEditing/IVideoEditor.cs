@@ -1,7 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using GoProAssistant.Shared.VideoRecording;
 
-namespace GoProAssistant.Shared
+namespace GoProAssistant.Shared.VideoEditing
 {
     public interface IVideoEditor
     {

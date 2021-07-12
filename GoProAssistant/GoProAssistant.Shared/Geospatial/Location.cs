@@ -1,4 +1,4 @@
-﻿namespace GoProAssistant.Shared
+﻿namespace GoProAssistant.Shared.Geospatial
 {
     public class Location
     {

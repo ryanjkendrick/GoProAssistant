@@ -4,9 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
+using GoProAssistant.Shared.Geospatial;
+
 using Newtonsoft.Json;
 
-namespace GoProAssistant.Shared
+namespace GoProAssistant.Shared.VideoRecording
 {
     public class RecordingStorage : IRecordingStorage
     {

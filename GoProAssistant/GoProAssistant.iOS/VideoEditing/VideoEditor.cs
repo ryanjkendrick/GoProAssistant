@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
-using GoProAssistant.Shared;
+using GoProAssistant.Shared.VideoEditing;
+using GoProAssistant.Shared.VideoRecording;
 
 using Foundation;
 using AVFoundation;
@@ -15,7 +15,7 @@ using UIKit;
 
 using Xamarin.Forms;
 
-namespace GoProAssistant.iOS
+namespace GoProAssistant.iOS.VideoEditing
 {
     public class VideoEditor : IVideoEditor
     {

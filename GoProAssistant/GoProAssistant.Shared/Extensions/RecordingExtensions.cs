@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using GoProAssistant.Shared.VideoRecording;
+
 namespace GoProAssistant.Shared.Extensions
 {
     public static class RecordingExtensions
@@ -18,8 +20,8 @@ namespace GoProAssistant.Shared.Extensions
                 var speedOverlay = new TextOverlay();
                 speedOverlay.Text = sample.Location.SpeedAccuracy < 0 ? "N/A" :
                     string.Format("±{0:0.#}mph {1:0.#}mph",
-                        MetresPerSecondToMPH(sample.Location.SpeedAccuracy),
-                        MetresPerSecondToMPH(sample.Location.Speed)); 
+                        sample.Location.SpeedAccuracy.MetresPerSecondToMPH(),
+                        sample.Location.Speed.MetresPerSecondToMPH()); 
                 speedOverlay.Position = "right";
                 speedOverlay.StartTime = duration;
 
@@ -43,7 +45,5 @@ namespace GoProAssistant.Shared.Extensions
 
             return textOverlays.ToArray();
         }
-
-        private static double MetresPerSecondToMPH(double value) => value * 2.2369; // m/s -> mph
     }
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using CoreLocation;
 using GoProAssistant.iOS.Extensions;
-using GoProAssistant.Shared;
+using GoProAssistant.Shared.Geospatial;
 using UIKit;
 
-namespace GoProAssistant.iOS
+namespace GoProAssistant.iOS.Geospatial
 {
     public class LocationManager : ILocationProvider
     {

@@ -1,7 +1,9 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 
-namespace GoProAssistant.Shared
+using GoProAssistant.Shared.Geospatial;
+
+namespace GoProAssistant.Shared.VideoRecording
 {
     public interface IRecordingStorage
     {

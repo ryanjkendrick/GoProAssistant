@@ -7,8 +7,8 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.CommunityToolkit.Core;
 
-using GoProAssistant.Shared;
 using GoProAssistant.Shared.Extensions;
+using GoProAssistant.Shared.VideoEditing;
 
 using Newtonsoft.Json;
 
@@ -130,13 +130,13 @@ namespace GoProAssistant.ViewModels
                 if (rec.VideoSaved)
                 {
                     string inputFile = DataStore.GetVideoPath(Name);
-                    string outputfile = DataStore.GetEditedVideoPath(Name);
+                    string outputFile = DataStore.GetEditedVideoPath(Name);
 
-                    vidEdit.AddTextToVideo(inputFile, outputfile, textOverlays);
+                    vidEdit.AddTextToVideo(inputFile, outputFile, textOverlays);
 
                     EditedVideoSource = new FileMediaSource
                     {
-                        File = outputfile
+                        File = outputFile
                     };
                     ShowEditedVid = true;
 

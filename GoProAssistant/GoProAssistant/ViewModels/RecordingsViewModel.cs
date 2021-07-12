@@ -34,6 +34,7 @@ namespace GoProAssistant.ViewModels
             {
                 Items.Clear();
                 var items = DataStore.GetAllRecordings();
+
                 foreach (var item in items)
                 {
                     Items.Add(new RecordingMeta

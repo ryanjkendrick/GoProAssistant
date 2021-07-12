@@ -9,5 +9,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
+    <Folder Include="Geospatial\" />
+    <Folder Include="VideoRecording\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Location\" />
+    <None Remove="Recording\" />
   </ItemGroup>
 </Project>

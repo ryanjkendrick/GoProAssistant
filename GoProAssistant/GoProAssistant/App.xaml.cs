@@ -1,8 +1,13 @@
 ﻿using Xamarin.Forms;
 
-using GoProAssistant.iOS;
+using GoProAssistant.iOS.Geospatial;
+using GoProAssistant.iOS.VideoEditing;
+
 using GoProAssistant.CameraInterface;
-using GoProAssistant.Shared;
+
+using GoProAssistant.Shared.Geospatial;
+using GoProAssistant.Shared.VideoRecording;
+using GoProAssistant.Shared.VideoEditing;
 
 namespace GoProAssistant
 {

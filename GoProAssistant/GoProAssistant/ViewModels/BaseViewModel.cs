@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 
 using Xamarin.Forms;
 
-using GoProAssistant.Shared;
+using GoProAssistant.Shared.VideoRecording;
 
 namespace GoProAssistant.ViewModels
 {

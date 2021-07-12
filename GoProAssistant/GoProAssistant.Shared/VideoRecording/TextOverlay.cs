@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GoProAssistant.Shared
+namespace GoProAssistant.Shared.VideoRecording
 {
     public class TextOverlay
     {

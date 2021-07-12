@@ -1,5 +1,4 @@
-﻿using System;
-namespace GoProAssistant.Models
+﻿namespace GoProAssistant.Models
 {
     public class RecordingMeta
     {
