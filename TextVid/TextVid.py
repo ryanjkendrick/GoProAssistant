@@ -4,16 +4,22 @@ import sys
 
 text_overlay_json_path = "./TextOverlays.json"
 original_vid_path = "./NewVid.mp4"
+edited_vid_path = "./NewVid_Edited.mp4"
 text_overlays = []
 
-if str(sys.argv) >= 3:
+if len(sys.argv) >= 2:
     text_overlay_json_path = sys.argv[1]
-    original_vid_path = sys.argv[2]
+
+    if len(sys.argv) >= 3:
+        original_vid_path = sys.argv[2]
+
+    if len(sys.argv) >= 4:
+        edited_vid_path = sys.argv[3]
 
 print("Preparing...")
 
 with open(text_overlay_json_path) as json_file:
-	    text_overlays = json.load(json_file)
+    text_overlays = json.load(json_file)
 
 video = VideoFileClip(original_vid_path)
 audio = AudioFileClip(original_vid_path) 
@@ -31,5 +37,5 @@ result.set_audio(video.audio)
 
 print("\nExporting...\n")
 
-result.write_videofile("NewVid_Edited.mp4", codec='libx264', preset="slow",)
+result.write_videofile(edited_vid_path, codec='libx264', preset="slow",)
 result.close()
