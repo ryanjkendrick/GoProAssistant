@@ -12,22 +12,22 @@ namespace GoProAssistant.Shared.VideoRecording
 {
     public class RecordingStorage : IRecordingStorage
     {
-        private Recording currentRecording;
+        private Recording _currentRecording;
 
-        private readonly string recordingFileDirectory;
+        private readonly string _recordingFileDirectory;
 
         public RecordingStorage()
         {
-            recordingFileDirectory = Environment.GetFolderPath(
+            _recordingFileDirectory = Environment.GetFolderPath(
                 Environment.SpecialFolder.LocalApplicationData, Environment.SpecialFolderOption.Create) + "/RecordingData";
         }
 
         public Recording FinishRecording()
         {
-            currentRecording.EndTime = DateTime.Now;
+            _currentRecording.EndTime = DateTime.Now;
             SaveRecording();
 
-            return currentRecording;
+            return _currentRecording;
         }
 
         public bool StartRecording(string name)
@@ -35,8 +35,8 @@ namespace GoProAssistant.Shared.VideoRecording
             if (string.IsNullOrWhiteSpace(name) || File.Exists(GenerateRecordingFilename(name, "json")))
                 return false;
 
-            currentRecording = new Recording(name);
-            currentRecording.StartTime = DateTime.Now;
+            _currentRecording = new Recording(name);
+            _currentRecording.StartTime = DateTime.Now;
 
             return true;
         }
@@ -45,27 +45,13 @@ namespace GoProAssistant.Shared.VideoRecording
         {
             var sample = new LocationSample(newLocation);
 
-            if (newLocation != null && !currentRecording.HasFinished)
-                currentRecording.LocationSamples.Add(sample);
+            if (newLocation != null && !_currentRecording.HasFinished)
+                _currentRecording.LocationSamples.Add(sample);
         }
-
-        private void SaveRecording(Recording recording = null)
-        {
-            Recording recordingToChange = recording ?? currentRecording;
-
-            if (!Directory.Exists(recordingFileDirectory))
-                Directory.CreateDirectory(recordingFileDirectory);
-
-            string json = JsonConvert.SerializeObject(recordingToChange);
-
-            File.WriteAllText(GenerateRecordingFilename(recordingToChange.Name, "json"), json);
-        }
-
-        private string GenerateRecordingFilename(string recName, string extension) => Path.Combine(recordingFileDirectory, $"{recName}.{extension}");
 
         public Recording GetRecording(string name)
         {
-            if (!Directory.Exists(recordingFileDirectory))
+            if (!Directory.Exists(_recordingFileDirectory))
                 return null;
 
             string fileName = GenerateRecordingFilename(name, "json");
@@ -75,12 +61,12 @@ namespace GoProAssistant.Shared.VideoRecording
 
         public Recording[] GetAllRecordings()
         {
-            if (!Directory.Exists(recordingFileDirectory))
+            if (!Directory.Exists(_recordingFileDirectory))
                 return new Recording[0];
 
             List<Recording> recordings = new List<Recording>();
 
-            foreach (string filename in Directory.EnumerateFiles(recordingFileDirectory, "*.json"))
+            foreach (string filename in Directory.EnumerateFiles(_recordingFileDirectory, "*.json"))
             {
                 var rec = GetRecordingFromFile(filename);
 
@@ -89,17 +75,6 @@ namespace GoProAssistant.Shared.VideoRecording
             }
 
             return recordings.OrderBy(x => x.StartTime).ToArray();
-        }
-
-        private Recording GetRecordingFromFile(string filename)
-        {
-            if (!File.Exists(filename))
-                return null;
-
-            string json = File.ReadAllText(filename);
-            var rec = JsonConvert.DeserializeObject<Recording>(json);
-
-            return rec;
         }
 
         public void DeleteRecording(string name)
@@ -154,10 +129,35 @@ namespace GoProAssistant.Shared.VideoRecording
             SaveRecording(recordingToChange);
         }
 
+        private Recording GetRecordingFromFile(string filename)
+        {
+            if (!File.Exists(filename))
+                return null;
+
+            string json = File.ReadAllText(filename);
+            var rec = JsonConvert.DeserializeObject<Recording>(json);
+
+            return rec;
+        }
+
         private void DeleteFile(string filename)
         {
             if (File.Exists(filename))
                 File.Delete(filename);
         }
+
+        private void SaveRecording(Recording recording = null)
+        {
+            Recording recordingToChange = recording ?? _currentRecording;
+
+            if (!Directory.Exists(_recordingFileDirectory))
+                Directory.CreateDirectory(_recordingFileDirectory);
+
+            string json = JsonConvert.SerializeObject(recordingToChange);
+
+            File.WriteAllText(GenerateRecordingFilename(recordingToChange.Name, "json"), json);
+        }
+
+        private string GenerateRecordingFilename(string recName, string extension) => Path.Combine(_recordingFileDirectory, $"{recName}.{extension}");
     }
 }
