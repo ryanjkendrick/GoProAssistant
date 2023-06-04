@@ -1,6 +1,7 @@
 import json
-from moviepy.editor import *
 import sys
+
+from moviepy.editor import *
 
 text_overlay_json_path = "./TextOverlays.json"
 original_vid_path = "./NewVid.mp4"
